@@ -1,14 +1,16 @@
-# create a function that return 2 var , one Enddate equal to the current date and the other one named Startdate equal to the current date -120 days
+# create a function that return 2 var , one Enddate equal to the current date and the other one named Startdate equal
+# to the current date -120 days
 import datetime
 
 
-def createDates():
-    #a time list in exact format like [YYYY][“-”][MM][“-”][DD][“T”][HH][“:”][MM][“:”][SS] where the 1st element is the enddate equal to date time now and the 2nd element is the start date equal to enddate -120 days
-    time = [datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), (datetime.datetime.now() - datetime.timedelta(days=120)).strftime("%Y-%m-%dT%H:%M:%S")]
+def createDates():  # this function is used to create the dates that will be used in the search in the nvd api with
+    # the specific format [YYYY][“-”][MM][“-”][DD][“T”][HH][“:”][MM][“:”][SS]
+    time = [datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+            (datetime.datetime.now() - datetime.timedelta(days=120)).strftime("%Y-%m-%dT%H:%M:%S")]
     return time
 
-def writehelp():
-    # kill the process and then print how to use the script , the -h or --help option is used to print the help message , -w is used to search for a keyword , -p is used to search for a product , -v is used to search for a version and need to be use with -p only , -V is used to search for a vendor
+
+def writehelp():  # this function is used to print the help of the script
     print("Usage: python3 M3k-cve.py [OPTION] [ARGUMENT]")
     print("Search for CVEs in the NVD database")
     print("Options:")

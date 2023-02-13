@@ -1,49 +1,46 @@
-import sys
-from CreateMatchString import *
-from functions import writehelp
-from Cleaner import *
 import argparse
+import sys
+
+from CreateMatchString import *
+from Search import *
+from functions import writehelp
 
 
-#a function that parse the args , if only -w is used then it will call the KeywordSearch function with the next arg , if -p/-v/-V is used in any mix (except -v alone) then it will call the MatchstringSearch function
-def checkarg():
+def checkarg():  # check if the user has entered the right arguments and if not, print the help , then execute the
+    # right function
+    output = None
     parser = argparse.ArgumentParser(description="Search for CVEs in the NVD database")
     parser.add_argument("-w", "--keyword", help="USE ALONE ONLY search for a keyword (use \" \" for multiple words)")
     parser.add_argument("-p", "--product", help="search for a product")
     parser.add_argument("-v", "--version", help="search for a version")
     parser.add_argument("-V", "--vendor", help="search for a vendor")
-    #modify the usage message
+    parser.add_argument("-o", "--output", help="output to a file", action="store_true")
     args = parser.parse_args()
-    if args.keyword is not None:
-        return KeywordSearch(args.keyword)
-    elif args.product is not None:
+    if args.output:  # if the user wants to output to a file
+        output = True
+    if args.keyword is not None:  # if the user wants to search for a keyword
+        return KeywordSearch(args.keyword, output)
+    elif args.product is not None:  # if the user wants to search for a product
         print("product")
-        if args.version is not None:
-            return MatchstringSearch(createMatchString(args.product, args.version, args.vendor))
-        elif args.vendor is not None:
-            return MatchstringSearch(createMatchString(args.product, None, args.vendor))
+        if args.version is not None:  # if the user wants to search for a product and a version
+            return MatchstringSearch(createMatchString(args.product, args.version, args.vendor), output)
+        elif args.vendor is not None:  # if the user wants to search for a product and a vendor
+            return MatchstringSearch(createMatchString(args.product, None, args.vendor), output)
         else:
-            return MatchstringSearch(createMatchString(args.product, None, None))
+            return MatchstringSearch(createMatchString(args.product, None, None), output)
     elif args.vendor is not None:
         print("vendor")
-        if args.product is not None:
+        if args.product is not None:  # if the user wants to search for a vendor and a product
             print("product")
-            return MatchstringSearch(createMatchString(args.product, None, args.vendor))
+            return MatchstringSearch(createMatchString(args.product, None, args.vendor), output)
         else:
             print("no product")
-            return MatchstringSearch(createMatchString(None, None, args.vendor))
+            return MatchstringSearch(createMatchString(None, None, args.vendor), output)
     else:
-        writehelp()
+        writehelp()  # if the user didn't enter the right arguments, print the help
         sys.exit(0)
 
-
-
-
-
-
-
-
-
+# the proof i can make useless long functions
 
 # def checkarg():
 #     # for i in range(len(sys.argv)):

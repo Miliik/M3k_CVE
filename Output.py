@@ -1,13 +1,12 @@
 import datetime
-import json
 
-from CVEClass import beautify_json
 
-def write_cvssMetricV2(cve, f, cvss='cvssMetricV2'):
-    if cvss in cve.metrics:
+def write_cvssMetricV2(cve, f, cvss='cvssMetricV2'):  # this function is used to write the cvssMetricV2 in the output
+    # file in .md format as it is a json, making possible to store easily the json in the class CVE
+    if cvss in cve.metrics: # if the cvssis in the metrics, write it in the output file
         f.write(f'- **{cvss}:**\n')
         for i in range(len(cve.metrics[cvss])):
-            for key, value in cve.metrics[cvss][i].items():
+            for key, value in cve.metrics[cvss][i].items(): # write the key and the value of the json in the output file
                 if key != 'cvssData':
                     f.write(f'   - **{key}:** {value}\n')
                 else:
@@ -15,10 +14,11 @@ def write_cvssMetricV2(cve, f, cvss='cvssMetricV2'):
                         f.write(f'   - **{key}:** {value}\n')
     else:
         f.write(f'- **{cvss}:** N/A\n')
-def create_output(nb, cvelist):
 
-    date = datetime.datetime.now()
-    with open(f'output.{date}.md', 'w') as f:
+
+def create_output(nb, cvelist):  # this function is used to create the output file in .md format
+    date = datetime.datetime.now() # get the current date
+    with open(f'output.{date}.md', 'w') as f: # create the output file
         f.write(f'# Vulnerability Details\n')
         f.write(f'- **Number of CVEs:** {nb}\n')
         for cve in cvelist:
@@ -28,8 +28,7 @@ def create_output(nb, cvelist):
             f.write(f'- **Last Modified:** {cve.lastModified}\n')
             f.write(f'- **Vulnerability Status:** {cve.vulnStatus}\n')
             f.write(f'- **Description:** {cve.descriptions}\n')
-            #as metrics contain json this json :{ "cvssMetricV2": [ { "acInsufInfo": false, "baseSeverity": "HIGH", "cvssData": { "accessComplexity": "LOW", "accessVector": "NETWORK", "authentication": "NONE", "availabilityImpact": "COMPLETE", "baseScore": 10.0, "confidentialityImpact": "COMPLETE", "integrityImpact": "COMPLETE", "vectorString": "AV:N/AC:L/Au:N/C:C/I:C/A:C", "version": "2.0" }, "exploitabilityScore": 10.0, "impactScore": 10.0, "obtainAllPrivilege": false, "obtainOtherPrivilege": false, "obtainUserPrivilege": false, "source": "nvd@nist.gov", "type": "Primary", "userInteractionRequired": false } ] } ", convert each key value pair to a string and write it to the file in .md format, BUT omitting the curly braces and the first cvssMetricV2
-            if  'cvssMetricV2' in cve.metrics:
+            if 'cvssMetricV2' in cve.metrics:  # if the cvssMetricV2 is in the metrics, write it in the output file
                 write_cvssMetricV2(cve, f)
             elif 'cvssMetricV3' in cve.metrics:
                 write_cvssMetricV2(cve, f, 'cvssMetricV3')
@@ -38,4 +37,4 @@ def create_output(nb, cvelist):
             else:
                 f.write(f'- **CVSS:** N/A\n')
     print('all the results are saved in the output file named in the format output.md')
-    return print(f'output.{date}.md')
+    return print(f'output.{date}.md')  # return the name of the output file for parsing purpose

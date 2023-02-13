@@ -9,7 +9,7 @@ def createDates():
 
 def writehelp():
     # kill the process and then print how to use the script , the -h or --help option is used to print the help message , -w is used to search for a keyword , -p is used to search for a product , -v is used to search for a version and need to be use with -p only , -V is used to search for a vendor
-    print("Usage: python3 main.py [OPTION] [ARGUMENT]")
+    print("Usage: python3 M3k-cve.py [OPTION] [ARGUMENT]")
     print("Search for CVEs in the NVD database")
     print("Options:")
     print("-h(help) : print this help message")
@@ -18,6 +18,6 @@ def writehelp():
     print("-v(version) : search for a version of a product (use with -p only)")
     print("-V(vendor) : search for a vendor")
     print("Examples:")
-    print("python3 main.py -w apache")
-    print("python3 main.py -p apache")
-    print("python3 main.py -p apache -v 2.4.18")
+    print("python3 M3k-cve.py -w apache")
+    print("python3 M3k-cve.py -p apache")
+    print("python3 M3k-cve.py -p apache -v 2.4.18")

@@ -3,13 +3,12 @@ import datetime
 
 
 def createDates():
-    enddate = datetime.datetime.now()
-    startdate = enddate - datetime.timedelta(days=120)
-    return startdate, enddate
-
+    #a time list in exact format like [YYYY][“-”][MM][“-”][DD][“T”][HH][“:”][MM][“:”][SS] where the 1st element is the enddate equal to date time now and the 2nd element is the start date equal to enddate -120 days
+    time = [datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), (datetime.datetime.now() - datetime.timedelta(days=120)).strftime("%Y-%m-%dT%H:%M:%S")]
+    return time
 
 def writehelp():
-    #kill the process and then print how to use the script , the -h or --help option is used to print the help message , -w is used to search for a keyword , -p is used to search for a product , -v is used to search for a version and need to be use with -p only , -V is used to search for a vendor
+    # kill the process and then print how to use the script , the -h or --help option is used to print the help message , -w is used to search for a keyword , -p is used to search for a product , -v is used to search for a version and need to be use with -p only , -V is used to search for a vendor
     print("Usage: python3 main.py [OPTION] [ARGUMENT]")
     print("Search for CVEs in the NVD database")
     print("Options:")

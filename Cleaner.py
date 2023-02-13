@@ -1,6 +1,12 @@
+import re
+
 from CVEClass import *
 from Output import *
 
+# def inputcleaner(string):
+#     #remove all special characters from the input string except space between words and put it to lower case
+#     string = re.sub(r'[^a-zA-Z0-9 ]', '', string).lower()
+#     return string
 
 def cveCleaner(data):
     cvelist = []

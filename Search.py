@@ -33,7 +33,6 @@ def MatchstringSearch(MatchString):
     i = input("would you like the only the most recent CVE (3 last months) ? (y/n) ")
     if i == "y":
         time = createDates()
-        print(time[0])
     try:
 
         if time is None:

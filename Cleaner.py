@@ -1,5 +1,3 @@
-import re
-
 from CVEClass import *
 from Output import *
 
@@ -8,7 +6,7 @@ from Output import *
 #     string = re.sub(r'[^a-zA-Z0-9 ]', '', string).lower()
 #     return string
 
-def cveCleaner(data):
+def cveCleaner(data,Isoutput):
     cvelist = []
 
     for i in range(len(data['vulnerabilities'])):
@@ -20,8 +18,12 @@ def cveCleaner(data):
                   data['vulnerabilities'][i]['cve']['descriptions'][0]['value'],
                   data['vulnerabilities'][i]['cve']['metrics'],)
         cvelist.append(cve)
-
-    return create_output(len(cvelist), cvelist)
+    if len(cvelist) == 0:
+        print("No CVE found")
+        return None
+    if Isoutput:
+        return create_output(len(cvelist), cvelist)
+    return printAll(cvelist)
 
 
 def printAll(cvelist):

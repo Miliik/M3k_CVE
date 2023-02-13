@@ -44,6 +44,7 @@ def MatchstringSearch(MatchString):
                                     params={"virtualMatchString": MatchString, "noRejected": ""})
 
         else:
+
             response = requests.get("https://services.nvd.nist.gov/rest/json/cves/2.0",
                                     headers={"apiKey": apikey},
                                     params={"virtualMatchString": MatchString, "noRejected": "", "pubStartDate": time[1], "pubEndDate": time[0]})
@@ -52,4 +53,3 @@ def MatchstringSearch(MatchString):
     except (requests.exceptions.RequestException, ValueError) as e:
         print(f"Error calling API: {e}")
         return None
-    return None

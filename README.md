@@ -34,7 +34,7 @@ pip install -r requirements.txt
 
 Alternatively, you can install the script directly using pip:
 
-```pip install git+https://github.com/your_username/M3k-cve.git```
+```pip install git+https://github.com/MeKAniml/M3k-cve.git```
 
 
 

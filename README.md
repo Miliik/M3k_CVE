@@ -20,7 +20,7 @@ The script is written in Python 3. It requires the following packages to be inst
 
 To install the script, clone the repository in your local directory:
 
-```git clone https://github.com/your_username/M3k-cve.git```
+```git clone https://github.com/MeKAniml/M3k-cve.git```
 
 
 

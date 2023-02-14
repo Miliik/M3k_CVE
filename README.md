@@ -80,3 +80,17 @@ If you wish to contribute to the project, please follow these steps:
 5. Submit a pull request to the original repository
 
 Please ensure that your code follows the PEP8 style guide and includes appropriate tests.
+
+## Ressources
+
+### API
+
+https://services.nvd.nist.gov/rest/json/cves/2.0
+
+### NIST (documentation)
+
+https://nvd.nist.gov/developers/vulnerabilities
+
+## Authors
+
+- [@MeKAniml](https://www.github.com/MeKAniml)
